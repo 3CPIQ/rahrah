@@ -14,11 +14,19 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.8'
-      - name: Check bundled packs
+      - name: Bundle the supplied packs
         run: |
-          test -f src/main/resources/data/p1/functions/start.mcfunction
-          test -f src/main/resources/data/p2/functions/start.mcfunction
-          test -f src/main/resources/assets/primes/icon.png
+          set -euo pipefail
+          datapack='PRIME_SANCTUMS_P1_P2_v13_1.20.1_DATAPACK(1).zip'
+          resourcepack='PRIME_SANCTUMS_P1_P2_v13_1.20.1_RESOURCEPACK(1).zip'
+          test -s "$datapack"
+          test -s "$resourcepack"
+          mkdir -p src/main/resources/assets/primes
+          unzip -oq "$datapack" 'data/*' -d src/main/resources
+          unzip -oq "$resourcepack" 'assets/*' -d src/main/resources
+          unzip -p "$resourcepack" pack.png > src/main/resources/assets/primes/icon.png
+          test -s src/main/resources/data/p1/functions/start.mcfunction
+          test -s src/main/resources/data/p2/functions/start.mcfunction
       - run: gradle build --no-daemon
       - uses: actions/upload-artifact@v4
         with:

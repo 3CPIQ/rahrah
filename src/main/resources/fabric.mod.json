@@ -1,0 +1,12 @@
+{
+ "schemaVersion": 1,
+ "id": "primes",
+ "version": "${version}",
+ "name": "Prime Sanctums P-1 + P-2",
+ "description": "Fabric port of Prime Sanctums v13",
+ "authors": ["3CPIQ"],
+ "environment": "*",
+ "entrypoints": {"main": ["com.cpiq.primes.PrimeSanctums"]},
+ "icon": "assets/primes/icon.png",
+ "depends": {"fabricloader": ">=0.14.0", "minecraft": "1.20.1", "java": ">=17", "fabric-api": "*"}
+}

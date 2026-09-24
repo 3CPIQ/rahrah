@@ -1,6 +1,6 @@
 # Prime Sanctums Fabric 1.20.1
 
-Fabric mod source for the supplied Prime Sanctums P-1 + P-2 v13 datapack and resource pack.
+Fabric mod source for Prime Sanctums P-1 + P-2 v13.
 
 ## Commands
 
@@ -9,10 +9,15 @@ Fabric mod source for the supplied Prime Sanctums P-1 + P-2 v13 datapack and res
 - `/primes p1 status`
 - `/primes p1 music_stop` and `/primes p2 music_stop`
 
-Commands require operator permission. The original `/function p1:start` and `/function p2:start` remain available.
+Commands require operator permission. Original `/function p1:start` and `/function p2:start` remain available.
 
-## Assets required before building
+## Build
 
-The original pack assets have **not yet been uploaded to this repository**. Copy `data/` from `PRIME_SANCTUMS_P1_P2_v13_1.20.1_DATAPACK(1).zip` and `assets/` from `PRIME_SANCTUMS_P1_P2_v13_1.20.1_RESOURCEPACK(1).zip` into `src/main/resources/`. Copy resource pack `pack.png` to `src/main/resources/assets/primes/icon.png`. Do not copy pack metadata or old README files.
+Place **both original archives** in the root of this repository with these exact names:
 
-The GitHub Actions workflow checks for those files and only builds once they are present. Use Java 17 and Fabric API for Minecraft 1.20.1. Run `gradle build` (Gradle 8.8), or download the JAR from the successful workflow artifact.
+- `PRIME_SANCTUMS_P1_P2_v13_1.20.1_DATAPACK(1).zip`
+- `PRIME_SANCTUMS_P1_P2_v13_1.20.1_RESOURCEPACK(1).zip`
+
+The GitHub Actions workflow unpacks their `data/` and `assets/` directories, copies resource-pack `pack.png` as the mod icon, builds with Java 17 and Gradle 8.8, and uploads a mod JAR as an artifact. The mod requires Fabric API on Minecraft 1.20.1.
+
+The original archives are **not yet in the repository**. Until both are uploaded, the workflow intentionally fails its asset check and cannot produce a working mod.
